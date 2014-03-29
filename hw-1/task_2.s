@@ -1,4 +1,4 @@
- .data
+	 .data
        scanf_block:
         .string "%d"
 
