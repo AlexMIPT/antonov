@@ -1,8 +1,8 @@
 	 .data
-       scanf_block:
+       scan:
         .string "%d"
 
-printf_block:
+print:
         .string "%d"
 value:
         .long 0x00000000
@@ -15,7 +15,7 @@ main:
         pushl %ebp
         movl %esp, %ebp  
         pushl $value
-        pushl $scanf_block
+        pushl $scan
         call scanf    
         addl $8, %esp
         shll value    
@@ -31,7 +31,7 @@ label_1:
         pushl $1
         movl $1, %ebx
 label_2:
-        pushl $printf_block
+        pushl $print
         cmp $0, %ebx     
         je label_3           
        call printf
@@ -42,7 +42,7 @@ label_3:
 	cmp $0, %ebx
 	jne end     
 	pushl $0       
-	pushl $printf_block
+	pushl $print
 	call printf
 	addl $8, %ecx
 end:
