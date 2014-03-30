@@ -1,9 +1,9 @@
 	.data
 vari:
 	.space 4
-strforscan:
+scan:
 	.string "%d"
-strforprint:
+print:
 	.string "%d\n"
 	.text
 	.globl main
@@ -22,7 +22,7 @@ main:
 	movl 	%esp, %ebp
 
 	pushl	$vari 	
-	pushl	$strforscan
+	pushl	$scan
 	call	scanf
 	addl 	$8, 	%esp
 
@@ -42,7 +42,7 @@ next:
 	loop 	next
 
 	pushl	%eax 
-	pushl	$strforprint
+	pushl	$print
 	call	printf
 	addl	$8, 	%esp
 
