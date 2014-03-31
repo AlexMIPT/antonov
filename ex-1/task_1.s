@@ -1,61 +1,61 @@
 	.data
 print:
-.string "%u\n"
+	.string "%u\n"
 
 put_in:
-.space 2048
+	.space 2048
 string:
-.string "%s"
+	.string "%s"
 .text
 
-str_length:
+	str_length:
 
-pushl %ebp
-movl %esp, %ebp
+	pushl %ebp
+	movl %esp, %ebp
 
-pushl $put_in
-pushl $string
-call scanf
-addl $8, %esp
+	pushl $put_in
+	pushl $string
+	call scanf
+	addl $8, %esp
 
-pushl %edi
+	pushl %edi
 
-movl 8(%ebp), %edi
+	movl 8(%ebp), %edi
 
-movl $0xffffffff, %ecx
-xorl %eax, %eax
+	movl $0xffffffff, %ecx
+	xorl %eax, %eax
 
-repne scasb
+	repne scasb
+	
+	notl %ecx
+	decl %ecx
 
-notl %ecx
-decl %ecx
+	movl %ecx, %eax
 
-movl %ecx, %eax
+	popl %edi
 
-popl %edi
+	movl %ebp, %esp
+	popl %ebp
 
-movl %ebp, %esp
-popl %ebp
-
-ret
+	ret
 
 .globl main
 
 main:
 
-pushl %ebp
-movl %esp, %ebp
+	pushl %ebp
+	movl %esp, %ebp
 
-pushl $put_in
-call str_length
+	pushl $put_in
+	call str_length
 
-pushl %eax
-pushl $print
-call printf
+	pushl %eax
+	pushl $print
+	call printf
+		
+	movl $0, %eax
 
-movl $0, %eax
+	movl %ebp, %esp
+	popl %ebp
 
-movl %ebp, %esp
-popl %ebp
-
-ret
+	ret
