@@ -18,7 +18,7 @@ main: 	pushl 	%ebp
         movl 	%esp, 	%ebp
 
 	pushl 	$element_number		
-	pushl	$scanform
+	pushl	$scan
 	call	scanf
 	addl	$8,	%esp
 
