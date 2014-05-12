@@ -42,11 +42,13 @@ main:
 	movl $str_1, %esi
 	movl $0, %ecx
 L1: 
+
 	lodsb
 	cmp $0, %al
 	je R1
 	addl $1, %ecx
 	jmp L1
+	
 R1:
 
 	movl %ecx, int_1
