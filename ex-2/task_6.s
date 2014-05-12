@@ -5,6 +5,7 @@ string:
 	.globl main
 
 main:
+
 	pushl	%ebp
 	movl	%esp, %ebp
 
@@ -19,9 +20,13 @@ main:
 	movl	%eax, (%esp)
 	call	scanf
 	jmp	L2
+	
 L1:
+
 	addl	$1, 284(%esp)
+	
 L2:
+
 	movl	284(%esp), %eax
 	movzbl	23(%esp,%eax), %eax
 	testb	%al, %al
@@ -29,7 +34,9 @@ L2:
 	subl	$1, 284(%esp)
 	movl	$0, 280(%esp)
 	jmp	L4
+	
 L3:
+
 	movl	280(%esp), %eax
 	movzbl	23(%esp,%eax), %eax
 	movb	%al, 279(%esp)
@@ -47,7 +54,9 @@ L3:
 	movzbl	279(%esp), %eax
 	movb	%al, 23(%esp,%edx)
 	addl	$1, 280(%esp)
+	
 L4:
+
 	movl	284(%esp), %eax
 	movl	%eax, %edx
 	shrl	$31, %edx
