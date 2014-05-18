@@ -52,7 +52,8 @@ main:
 	call scanf  
 	movl 8(%esp), %ecx
 
-	jmp function_arr  #read n elements (in .text)
+	jmp function_arr   
+	#
 
 L1:
 	jmp sum_array   
