@@ -1,48 +1,72 @@
-.data
-printf_format:
-	.string "%d\n"
-array:
-	.space 80
-element_number:
-	.space 4
-scan:
+	.data
+	.comm array,404,32 
+
+string:
 	.string "%d"
+scan:
+	.string "%lf"
 print:
-	.string "%d\n"
-memor:
-	.space 4
-.text
-.globl main
+	.string "%.2lf\n"
 
-main: 	pushl 	%ebp			
-        movl 	%esp, 	%ebp
+	.text
+funct_1:
+	pushl %ecx       
+loop_1:
+	pushl %ecx        
+	movl $array, %ebx
+	addl %ecx, %ebx   
+	addl %ecx, %ebx    
+	addl %ecx, %ebx
+	addl %ecx, %ebx
+	pushl %ebx
+	pushl $scan
+	call scanf
+	addl $8, %esp
+	popl %ecx          
+	loop loop_1
+	popl %ecx          
+	jmp L1   
 
-	pushl 	$element_number		
-	pushl	$scan
-	call	scanf
-	addl	$8,	%esp
+funct_2:
+	movl $0, (%esp)
+loop_2:
+	movl $array, %ebx
+	addl %ecx, %ebx
+	addl %ecx, %ebx
+	addl %ecx, %ebx
+	addl %ecx, %ebx
+	fldl (%ebx)
+	fldl 4(%esp)
+	fadd %st(1), %st    
+	fstpl 4(%esp)      
+	loop loop_2
+	jmp L2    
 
-	movl	element_number,	%eax	
-	movl	%eax,	memor	
+        .globl main
+main:
+	pushl %ebp
+	movl %esp, %ebp  
 
-	movl	$array,	%ecx	
+	pushl %esp
+	pushl $string
+	call scanf  
+	movl 8(%esp), %ecx
 
-	pushl   $array            
-       	pushl   $scan
-       	call    scanf
-      	addl    $8,     %esp
+	jmp function_arr  #read n elements (in .text)
 
-
-
-	pushl	(%ecx)
-        pushl   $print
-        call    printf
-        addl    $8,     %esp
+L1:
+	jmp sum_array   
 
 
+L2:
+	movl $print, %eax  
+	movl %eax,(%esp)        
+	call printf
+	addl $8, %esp
 
-	movl 	$0,	%eax		
-	movl	%ebp,	%esp
-	popl	%ebp
+
+	movl %ebp, %esp   
+	popl %ebp
+	movl $0, %eax
+
 	ret
-
