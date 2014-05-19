@@ -52,11 +52,10 @@ main:
 	call scanf  
 	movl 8(%esp), %ecx
 
-	jmp function_arr   
-	#
+	jmp funct_1
 
 L1:
-	jmp sum_array   
+	jmp funct_2   
 
 
 L2:
